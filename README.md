@@ -1,0 +1,1 @@
+This is a repository of scripts I've written to process data collected at the FAST beamline at CHESS. Most require imports of specific libraries that exist in various conda enviornments maintained on the CHESS servers. The required conda environment is usually listed in the comments at the top of a given script.
