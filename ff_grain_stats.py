@@ -51,7 +51,10 @@ if __name__ == '__main__':
                         help="variable to histogram e.g. chisq, completeness, ...", type=str)
     parser.add_argument('-o', '--output_fname',
                         help="output filename", type=str, default="")
-                        
+    parser.add_argument('-n','--xmin',
+                        help="x-axis min value", type=float, default="-1")
+    parser.add_argument('-x', '--xmax',
+                        help="x-axis max value", type=float, default="-1")                    
     args = parser.parse_args()
 
     # strip args
@@ -59,6 +62,8 @@ if __name__ == '__main__':
     grains_fname = args.grains_fname
     var_for_hist = args.var_for_hist
     output_fname = args.output_fname
+    xmin = args.xmin 
+    xmax = args.xmax
     
     #make sure the grains.out file exists
     grains_full_fname = os.path.join(grains_fpath, grains_fname)
@@ -121,6 +126,8 @@ if __name__ == '__main__':
     fig = plt.figure(figsize =(10,7))
     plt.hist(ff_data[:,grain_vars_ind[var_for_hist]],100)
     plt.title(grains_fname + ' ' + var_for_hist)
+    if (xmin!=-1):
+        plt.xlim(xmin, xmax)
     plt.show
     plt.ylabel('[N]')
     plt.xlabel(var_for_hist)
